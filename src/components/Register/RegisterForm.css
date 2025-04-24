@@ -1,0 +1,96 @@
+.register-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+input.error {
+  border-color: #ff3860;
+}
+
+.error-message {
+  color: #ff3860;
+  font-size: 14px;
+  margin-top: 5px;
+  display: block;
+}
+
+.password-hint {
+  display: block;
+  color: #666;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+::placeholder {
+  color: #ccc;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: #ccc;
+}
+
+::-ms-input-placeholder {
+  color: #ccc;
+}
+
+.input-hint {
+  display: block;
+  color: #666;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Adicione o novo código CSS abaixo desta linha */
+.form-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.form-footer a {
+  color: #4caf50;
+  text-decoration: none;
+}
+
+.form-footer a:hover {
+  text-decoration: underline;
+}
