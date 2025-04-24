@@ -14,22 +14,17 @@ function RegisterForm() {
 
   const [errors, setErrors] = useState({});
 
-  // Função para validar senha
   const validatePassword = (password) => {
     const hasUpperCase = /[A-Z]/.test(password);
     const hasNumber = /[0-9]/.test(password);
     return hasUpperCase && hasNumber;
   };
 
-  // Função para formatar CPF
   const formatCPF = (value) => {
-    // Remove caracteres não numéricos
     const cpfNumbers = value.replace(/\D/g, '');
     
-    // Limita a 11 dígitos
     const cpfLimited = cpfNumbers.slice(0, 11);
     
-    // Aplica a máscara
     let formattedCPF = '';
     for (let i = 0; i < cpfLimited.length; i++) {
       if (i === 3 || i === 6) formattedCPF += '.';
@@ -40,15 +35,10 @@ function RegisterForm() {
     return formattedCPF;
   };
 
-  // Função para formatar telefone
   const formatPhone = (value) => {
-    // Remove caracteres não numéricos
     const phoneNumbers = value.replace(/\D/g, '');
-    
-    // Limita a 11 dígitos
     const phoneLimited = phoneNumbers.slice(0, 11);
     
-    // Aplica a máscara
     let formattedPhone = '';
     for (let i = 0; i < phoneLimited.length; i++) {
       if (i === 0) formattedPhone += '(';
@@ -64,14 +54,12 @@ function RegisterForm() {
     const { name, value } = e.target;
     
     if (name === 'cpf') {
-      // Aplica a máscara ao CPF
       const formattedValue = formatCPF(value);
       setFormData({
         ...formData,
         [name]: formattedValue,
       });
       
-      // Verifica se o CPF tem 11 dígitos (sem contar os caracteres de formatação)
       const digitsOnly = value.replace(/\D/g, '');
       if (digitsOnly.length !== 11 && digitsOnly.length > 0) {
         setErrors({
@@ -86,14 +74,12 @@ function RegisterForm() {
       }
     } 
     else if (name === 'telefone') {
-      // Aplica a máscara ao telefone
       const formattedValue = formatPhone(value);
       setFormData({
         ...formData,
         [name]: formattedValue,
       });
       
-      // Verifica se o telefone tem 11 dígitos (sem contar os caracteres de formatação)
       const digitsOnly = value.replace(/\D/g, '');
       if (digitsOnly.length !== 11 && digitsOnly.length > 0) {
         setErrors({
@@ -107,7 +93,6 @@ function RegisterForm() {
         });
       }
     }
-    // Validação de senha
     else if (name === 'senha') {
       setFormData({
         ...formData,
@@ -126,7 +111,6 @@ function RegisterForm() {
         });
       }
     } 
-    // Outros campos
     else {
       setFormData({
         ...formData,
@@ -138,16 +122,13 @@ function RegisterForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Validação final antes do envio
     const newErrors = {};
     
-    // Verifica CPF (apenas os dígitos)
     const cpfDigits = formData.cpf.replace(/\D/g, '');
     if (cpfDigits.length !== 11) {
       newErrors.cpf = 'CPF deve ter 11 dígitos';
     }
     
-    // Verifica telefone (apenas os dígitos)
     const phoneDigits = formData.telefone.replace(/\D/g, '');
     if (phoneDigits.length !== 11) {
       newErrors.telefone = 'Telefone deve ter 11 dígitos';
@@ -157,24 +138,20 @@ function RegisterForm() {
       newErrors.senha = 'A senha deve conter pelo menos uma letra maiúscula e um número';
     }
     
-    // Se houver erros, não envia o formulário
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
     
-    // Preparar dados para envio (remover formatação)
     const submissionData = {
       ...formData,
       cpf: cpfDigits,
       telefone: phoneDigits
     };
     
-    // Se chegou aqui, o formulário está válido
     alert('Cadastro realizado com sucesso! Você será redirecionado para a página de login.');
     console.log(submissionData);
     
-    // Limpar o formulário após envio
     setFormData({
       nome: '',
       email: '',
@@ -184,7 +161,6 @@ function RegisterForm() {
     });
     setErrors({});
     
-    // Redirecionar para a página de login após cadastro
     setTimeout(() => {
       navigate('/login');
     }, 1000); // Pequeno delay para o usuário ver a mensagem
